@@ -78,7 +78,7 @@
     <Content Include="js\webuploader\webuploader.min.js" />
     <Content Include="js\webuploader\webuploader.withoutimage.js" />
     <Content Include="js\webuploader\webuploader.withoutimage.min.js" />
-    <Content Include="NPOI.dll" />
+    <Content Include="lib\NPOI.dll" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
