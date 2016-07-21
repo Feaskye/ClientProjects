@@ -9,6 +9,8 @@
     <link href="css/bootstrap.css" rel="stylesheet" />
     <script src="js/jquery-1.10.2.min.js"></script>
 <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <script src="js/webuploader/webuploader.min.js"></script>
+    <script src="js/webuploader/webuploader.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -32,7 +34,7 @@
             </div>
         </div>
         <div class="container body-content">
-
+            <asp:Button ID="Button1" runat="server" Text="Button" />
         </div>
     </form>
 </body>
