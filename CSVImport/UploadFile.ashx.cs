@@ -12,7 +12,7 @@ namespace CSVImport
     public class UploadFile : IHttpHandler
     {
         private int _maxLength = 5 * 1024 * 1024;
-        private readonly string[] _imgExtensions = new string[] { ".gif", ".jpg", ".jpeg", ".bmp", ".png" };
+        private readonly string[] _imgExtensions = new string[] { ".csv", ".excel" };
 
         public void ProcessRequest(HttpContext context)
         {
@@ -42,7 +42,9 @@ namespace CSVImport
                 {
                     Directory.CreateDirectory(context.Server.MapPath(fileDir));
                 }
+                var filePath = context.Server.MapPath(filename);
                 file.SaveAs(context.Server.MapPath(filename));
+                SaveData(filePath);
                 JsonResult(true,data:filename);
                 return;
             }
@@ -55,6 +57,11 @@ namespace CSVImport
         {
             HttpContext.Current.Response.Write("{\"success\":" + isSuccess.ToString().ToLower() + ",\"message\":\"" + message + "\",\"data\":\"" + data + "\"}");
             HttpContext.Current.Response.End();
+        }
+
+        private void SaveData(string filePath)
+        {
+            var dataset= ExcelHelper.ImportDataSetFromExcel(filePath, 0);
         }
 
         public bool IsReusable
