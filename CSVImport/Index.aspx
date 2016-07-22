@@ -1,27 +1,38 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="CSVImport.Index" %>
 
 <!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
     <title>CSV导入数据库</title>
-    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+
     <script src="js/jquery-1.10.2.min.js"></script>
-<link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <script src="js/webuploader/webuploader.min.js"></script>
-    <script src="js/webuploader/webuploader.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <style type="text/css">
+        /* jquery.webuploader */
+.webuploader-container { position: relative; }
+.webuploader-element-invisible { position: absolute !important; clip: rect(1px 1px 1px 1px); /* IE6, IE7 */ clip: rect(1px,1px,1px,1px); }
+.webuploader-pick-disable { opacity: 0.6; pointer-events: none; }
+    </style>
 </head>
 <body>
-    <form id="form1" runat="server">
-    <div class="container body-content">
-            <button type="button" class="btn btn-primary" id="filePicker"><i class="fa fa-check-square-o"></i>&nbsp;选择文件</button>
-        <input name="hiddenFile" value="" type="hidden" />
-        <label id="fileName"></label>
-            <span id="spMessage"></span>
+    <div class="container">
+         <h3>CSV上传并导入数据库</h3>
+            <div class="span10">
+                <button type="button" class="btn btn-primary" id="filePicker"><i class="fa fa-check-square-o"></i>&nbsp;选择文件</button>
+                <input name="hiddenFile" value="" type="hidden" />
+                <label id="fileName"></label>
+                <span id="spMessage"></span>
+            </div>
         </div>
-        
-    </form>
+    <script src="js/webuploader/webuploader.min.js"></script>
+    <script src="js/webuploader/webuploader.js"></script>
     <script type="text/javascript">
         var originalImgTip = $('span#spMessage');
         //文件上传
@@ -33,7 +44,7 @@
         //创建实例
         var uploader = WebUploader.create({
             pick: '#filePicker',
-            accept: { title: 'Images', extensions: 'gif,jpg,jpeg,bmp,png', mimeTypes: 'image/*' },
+            accept: { title: 'files', extensions: 'csv', mimeTypes: 'file/*' },
             server: '/UploadFile.ashx',
             auto: true,
             upload_target: "rrr",
@@ -52,13 +63,13 @@
 
         //当文件上传成功时触发
         uploader.onUploadSuccess = function (file, response) {
-            alert(response.data);
             if (response.success) {
                 $('#hiddenFile').val(response.data);
                 $("#fileName").html(response.data);
+                originalImgTip.html("文件上传并导入完毕");
             }
             else {
-                originalImgTip.html("文件上传失败");
+                originalImgTip.html(response.message);
             }
         };
 
@@ -90,7 +101,7 @@
 
         //文件上传完成时触发
         uploader.onUploadComplete = function (file) {
-            originalImgTip.html("文件上传完毕");
+            //originalImgTip.html("文件上传并导入完毕");
             //setTimeout(function () {
             //    originalImgTip.html("");
             //}, 500);
