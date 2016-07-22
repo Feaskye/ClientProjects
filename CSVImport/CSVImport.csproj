@@ -65,18 +65,9 @@
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\jquery-1.10.2.min.js" />
     <Content Include="js\webuploader\Uploader.swf" />
-    <Content Include="js\webuploader\uploadhelper.js" />
     <Content Include="js\webuploader\webuploader.css" />
-    <Content Include="js\webuploader\webuploader.custom.js" />
-    <Content Include="js\webuploader\webuploader.custom.min.js" />
-    <Content Include="js\webuploader\webuploader.flashonly.js" />
-    <Content Include="js\webuploader\webuploader.flashonly.min.js" />
-    <Content Include="js\webuploader\webuploader.html5only.js" />
-    <Content Include="js\webuploader\webuploader.html5only.min.js" />
     <Content Include="js\webuploader\webuploader.js" />
     <Content Include="js\webuploader\webuploader.min.js" />
-    <Content Include="js\webuploader\webuploader.withoutimage.js" />
-    <Content Include="js\webuploader\webuploader.withoutimage.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
