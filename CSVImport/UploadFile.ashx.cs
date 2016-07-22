@@ -65,7 +65,7 @@ namespace CSVImport
 
         private bool SaveData(string filePath)
         {
-            var dt = OpenCSVFile(filePath); //ExcelHelper.ImportDataTableFromExcel(filePath, 0, 0);
+            var dt = OpenCSVFile(filePath);
             if (dt.Rows.Count > 0)
             {
                 StringBuilder sb = new StringBuilder();
